@@ -1,0 +1,26 @@
+﻿@using DiegoRodriguez.Modelos
+@model IEnumerable<ComunidadCuantos>
+
+<h3>Provincias por Comunidad</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>COMUNIDAD</th>
+            <th>TOTAL SUPERFICIE</th>
+            <th>TOTAL NUMERO HABITANTES</th>
+            <th>TOTAL PROVINCIAS</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Comunidad</td>
+                <td>@item.superficie</td>
+                <td>@item.numHabitantes</td>
+                <td>@item.numProvincias</td>
+            </tr>
+        }
+    </tbody>
+</table>

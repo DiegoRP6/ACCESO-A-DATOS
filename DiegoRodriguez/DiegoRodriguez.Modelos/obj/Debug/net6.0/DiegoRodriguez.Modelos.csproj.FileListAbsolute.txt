@@ -1,0 +1,12 @@
+C:\Users\diegi\Desktop\ProyectosNET\DiegoRodriguez\DiegoRodriguez.Modelos\obj\Debug\net6.0\DiegoRodriguez.Modelos.csproj.AssemblyReference.cache
+C:\Users\diegi\Desktop\ProyectosNET\DiegoRodriguez\DiegoRodriguez.Modelos\obj\Debug\net6.0\DiegoRodriguez.Modelos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\diegi\Desktop\ProyectosNET\DiegoRodriguez\DiegoRodriguez.Modelos\obj\Debug\net6.0\DiegoRodriguez.Modelos.AssemblyInfoInputs.cache
+C:\Users\diegi\Desktop\ProyectosNET\DiegoRodriguez\DiegoRodriguez.Modelos\obj\Debug\net6.0\DiegoRodriguez.Modelos.AssemblyInfo.cs
+C:\Users\diegi\Desktop\ProyectosNET\DiegoRodriguez\DiegoRodriguez.Modelos\obj\Debug\net6.0\DiegoRodriguez.Modelos.csproj.CoreCompileInputs.cache
+C:\Users\diegi\Desktop\ProyectosNET\DiegoRodriguez\DiegoRodriguez.Modelos\bin\Debug\net6.0\DiegoRodriguez.Modelos.deps.json
+C:\Users\diegi\Desktop\ProyectosNET\DiegoRodriguez\DiegoRodriguez.Modelos\bin\Debug\net6.0\DiegoRodriguez.Modelos.dll
+C:\Users\diegi\Desktop\ProyectosNET\DiegoRodriguez\DiegoRodriguez.Modelos\bin\Debug\net6.0\DiegoRodriguez.Modelos.pdb
+C:\Users\diegi\Desktop\ProyectosNET\DiegoRodriguez\DiegoRodriguez.Modelos\obj\Debug\net6.0\DiegoRodriguez.Modelos.dll
+C:\Users\diegi\Desktop\ProyectosNET\DiegoRodriguez\DiegoRodriguez.Modelos\obj\Debug\net6.0\refint\DiegoRodriguez.Modelos.dll
+C:\Users\diegi\Desktop\ProyectosNET\DiegoRodriguez\DiegoRodriguez.Modelos\obj\Debug\net6.0\DiegoRodriguez.Modelos.pdb
+C:\Users\diegi\Desktop\ProyectosNET\DiegoRodriguez\DiegoRodriguez.Modelos\obj\Debug\net6.0\ref\DiegoRodriguez.Modelos.dll

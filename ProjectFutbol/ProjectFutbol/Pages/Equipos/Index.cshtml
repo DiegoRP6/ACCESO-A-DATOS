@@ -1,0 +1,28 @@
+﻿@page
+@model ProjectFutbol.Pages.Equipos.IndexModel
+@{
+}
+	<h1>Equipos</h1>
+	<!--Formulario para buscar alumnos-->
+<form method="get">
+		<div class="form-group">
+			<input asp-for="elementoABuscar" class="control-label"></input>
+			<input type="submit" value="Busca!"  class="btn btn-primary" />
+		</div>
+</form>
+
+<div>
+	@await Component.InvokeAsync("EquipoCategoria")
+</div>
+
+	@foreach(var equipo in Model.Equipos)
+	{
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">@equipo.nomEquipo</h5>
+				<p class="card-text">@equipo.Ciudad</p>
+				<a asp-page="/Equipos/Details" asp-route-ID="@equipo.Id" class="btn btn-primary m1">View</a>
+				<a asp-page="/Equipos/Delete" asp-route-ID="@equipo.Id" class="btn btn-primary m1">Detele</a>
+			</div>
+		</div>
+	}

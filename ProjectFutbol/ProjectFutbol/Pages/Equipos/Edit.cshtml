@@ -1,0 +1,53 @@
+﻿@page
+@using Modelos;
+@model ProjectFutbol.Pages.Equipos.EditModel
+@{
+	var photo = "~/fotoEquipo/" + (Model.equipo.Foto ?? "noimage.jpg");
+	var titulo = Model.equipo.Id == 0 ? "Insertar Equipo" : "Editar Equipo";
+}
+<h1>@titulo</h1>
+<!-- Formulario para modificar todos los campos de equipo-->
+
+<form method="post" enctype="multipart/form-data">
+	<input type="hidden" asp-for="equipo.Id" />
+	<div class="form-group">
+		<label asp-for="equipo.nomEquipo" class="control-label"></label>
+		<input asp-for="equipo.nomEquipo" class="form-control" />
+		<span asp-validation-for="equipo.nomEquipo" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="equipo.nomEstadio" class="control-label"></label>
+		<input asp-for="equipo.nomEstadio" class="form-control" />
+		<span asp-validation-for="equipo.nomEstadio" class="text-danger"></span>
+	</div>
+	<!--select de las categorias-->
+	<div class="form-group">
+		<label asp-for="equipo.categoria" class="control-label"></label>
+		<select asp-for="equipo.categoria" class="form-select" 
+			asp-items="Html.GetEnumSelectList<Categoria>()"></select>
+		<span asp-validation-for="equipo.categoria" class="text-danger"></span>
+	<div class="form-group">
+		<label asp-for="equipo.Ciudad" class="control-label"></label>
+		<input asp-for="equipo.Ciudad" class="form-control" />
+		<span asp-validation-for="equipo.Ciudad" class="text-danger"></span>
+	</div>
+	<!--Mostrar foto y poder insertar un archivo con IFormFile para luego cambiar la imagen-->
+	<div class="form-group">
+		<label asp-for="equipo.Foto" class="control-label"></label>
+		<img class="card-img-top" width="250px" asp-append-version="true" src="@photo">
+		<input asp-for="equipo.Foto" class="form-control" type="file" id="Photo" />
+		<span asp-validation-for="equipo.Foto" class="text-danger"></span>
+	</div>
+
+
+<!-- Boton submit para guardar los cambios y que lleva al index-->
+	<div class="form-group">
+		<input type="submit" value="Save" class="btn btn-primary" />
+		<a asp-page="/Equipos/Index" class="btn btn-primary">Back to List</a>
+	</div>
+
+</form>
+
+
+}
+

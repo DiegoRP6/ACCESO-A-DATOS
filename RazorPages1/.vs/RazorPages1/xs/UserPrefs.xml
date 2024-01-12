@@ -1,0 +1,45 @@
+﻿<Properties StartupConfiguration="{1AFED0B9-AB14-4857-BEAA-2692D0B9DAE3}|Default">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.RazorPages1 PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="RazorPages1/Pages/Alumnos/Edit.cshtml">
+    <Files>
+      <File FileName="RazorPages1/Pages/Alumnos/Index.cshtml" />
+      <File FileName="RazorPages1/Pages/Alumnos/Index.cshtml.cs" />
+      <File FileName="RazorPages1/Pages/Alumnos/Details.cshtml" />
+      <File FileName="RazorPages1/Pages/Alumnos/Details.cshtml.cs" />
+      <File FileName="RazorPages.Service/IAlumnoRepositorio.cs" />
+      <File FileName="RazorPages.Service/AlumnoRepositorio.cs" Line="78" Column="50" />
+      <File FileName="RazorPages1/Pages/Alumnos/Edit.cshtml" Line="55" Column="1" />
+      <File FileName="RazorPages1/Pages/Alumnos/Edit.cshtml.cs" Line="47" Column="31" />
+      <File FileName="RazorPage/Alumno.cs" />
+      <File FileName="RazorPages1/Pages/_ViewImports.cshtml" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="RazorPages1" expanded="True">
+            <Node name="RazorPages.Modelos" expanded="True" />
+            <Node name="RazorPages.Service" expanded="True" />
+            <Node name="RazorPages1" expanded="True">
+              <Node name="Pages" expanded="True">
+                <Node name="Alumnos" expanded="True">
+                  <Node name="Edit.cshtml" expanded="True" />
+                </Node>
+              </Node>
+              <Node name="wwwroot" expanded="True">
+                <Node name="images" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/alberto/gitSalesianos/AAD/RazorPages1/RazorPages1/Pages/Alumnos/Edit.cshtml.cs" relfile="RazorPages1/Pages/Alumnos/Edit.cshtml.cs" line="38" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+</Properties>

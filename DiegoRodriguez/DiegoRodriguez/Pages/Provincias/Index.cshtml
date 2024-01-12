@@ -1,0 +1,40 @@
+﻿@page
+@using DiegoRodriguez.Modelos;
+@model DiegoRodriguez.Pages.Provincias.IndexModel
+@{
+}
+<h1>Provincias</h1>
+
+<div class="col-sm-8">
+    @await Component.InvokeAsync("ProvinciaComunidad")
+</div>
+
+
+
+<!--Desplegable para seleccionar una comunidad y que salgan sus provincias-->
+<form method="get">
+    <div class="form-group">
+        <label asp-for="elementoABuscar" class="control-label">Filtrador de provincias por Comunidad</label>
+        <select asp-for="elementoABuscar" class="form-control">
+            @foreach (var value in Enum.GetValues(typeof(Comunidad)))
+            {
+                <option value="@((int)value)">@value</option>
+            }
+        </select>
+    </div>
+    <input type="submit" value="Filtrar" class="btn btn-primary" />
+</form>
+
+<br /><br />
+<!--Mostrar todas las provincias con sus datos-->
+@foreach (var provincia in Model.Provincias)
+{
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">@provincia.nomProvincia</h5>
+			<p class="card-text">@provincia.numHabitantes </p>
+			<p class="card-text">@provincia.superficie </p>
+			<p class="card-text">@provincia.codComunidad</p>
+		</div>
+	</div>
+}
