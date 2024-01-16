@@ -1,28 +1,34 @@
 ﻿@model IEnumerable<MVC2024.Models.VehiculoModelo>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Busqueda";
 }
 
-<h1>Index</h1>
+<h1>Busqueda</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<!--Formulario de busqueda de un input y un boton-->
+<form method="get">
+	<p>
+		<input type="search" id="elementoABuscar" name="elementoABuscar" placeholder="Buscar matrícula" value="@ViewBag.buscar" /> <!--El name es lo que le pasas al controlador-->
+        <input type="submit" value="Buscar" />
+	</p>
+</form>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayName("MATRICULA")
+                @Html.DisplayNameFor(model => model.Matricula)
             </th>
             <th>
-                @Html.DisplayName("COLOR")
+                @Html.DisplayNameFor(model => model.Color)
             </th>
             <th>
-                @Html.DisplayName("MODELO")
-            </th>
-            <th>
-                @Html.DisplayName("MARCA")
+                @Html.DisplayNameFor(model => model.Serie)
             </th>
             <th></th>
         </tr>
@@ -39,9 +45,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Serie.nomSerie)
             </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Serie.Marca.nomMarca)
-                </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

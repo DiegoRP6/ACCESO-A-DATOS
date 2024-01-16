@@ -1,10 +1,15 @@
 ﻿@model IEnumerable<MVC2024.Models.VehiculoModelo>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Busqueda2";
 }
 
-<h1>Index</h1>
+<h1>Busqueda2</h1>
+<!--Desplegable de matriculas con boton de buscar-->
+<form method="get">
+    <select name="elementoABuscar" class="form-control" asp-items="ViewBag.listaMatriculas"></select>
+    <input type="submit" value="Buscar" />
+</form>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,16 +18,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayName("MATRICULA")
+                @Html.DisplayNameFor(model => model.Matricula)
             </th>
             <th>
-                @Html.DisplayName("COLOR")
+                @Html.DisplayNameFor(model => model.Color)
             </th>
             <th>
-                @Html.DisplayName("MODELO")
-            </th>
-            <th>
-                @Html.DisplayName("MARCA")
+                @Html.DisplayNameFor(model => model.Serie)
             </th>
             <th></th>
         </tr>
@@ -39,9 +41,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Serie.nomSerie)
             </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Serie.Marca.nomMarca)
-                </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

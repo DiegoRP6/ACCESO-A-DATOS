@@ -18,7 +18,7 @@ namespace MVC2024.Controllers
         public ActionResult Index()
         {
 
-            return View(contexto.VehiculoModelo.Include(x => x.Serie).ToList());
+            return View(contexto.VehiculoModelo.Include(x => x.Serie.Marca).ToList());
         }
 
         // GET: VehiculoController/Details/5
@@ -93,6 +93,24 @@ namespace MVC2024.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult Busqueda(String elementoABuscar = "")
+        {
+         //así Agustín
+        ViewBag.buscar = elementoABuscar;
+        var lista = from v in contexto.VehiculoModelo where (v.Matricula.Contains(elementoABuscar)) select v;
+        return View(lista.Include(x => x.Serie).ToList());
+
+        // asi copilot    return View(contexto.VehiculoModelo.Include(x => x.Serie.Marca).Where(x => x.Matricula.Contains(elementoABuscar)).ToList());
+        }
+
+        public ActionResult Busqueda2(String elementoABuscar = "")
+        {
+            //viewBag que cargue las matriculas del atributo de vehiculo
+            ViewBag.listaMatriculas = new SelectList(contexto.VehiculoModelo, "Matricula", "Matricula");
+            //return view con equals
+            return View(contexto.VehiculoModelo.Include(x => x.Serie.Marca).Where(x => x.Matricula.Equals(elementoABuscar)));
         }
     }
 }
