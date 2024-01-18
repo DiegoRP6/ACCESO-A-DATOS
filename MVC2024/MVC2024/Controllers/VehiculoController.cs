@@ -56,7 +56,9 @@ namespace MVC2024.Controllers
         // GET: VehiculoController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ViewBag.serieID = new SelectList(contexto.SerieModelo, "ID", "NomSerie");
+            VehiculoModelo vehiculo = contexto.VehiculoModelo.Find(id);
+            return View(vehiculo);
         }
 
         // POST: VehiculoController/Edit/5
@@ -108,7 +110,7 @@ namespace MVC2024.Controllers
         public ActionResult Busqueda2(String elementoABuscar = "")
         {
             //viewBag que cargue las matriculas del atributo de vehiculo
-            ViewBag.listaMatriculas = new SelectList(contexto.VehiculoModelo, "Matricula", "Matricula");
+            ViewBag.listaMatriculas = new SelectList(contexto.VehiculoModelo, "Matricula", "Matricula", elementoABuscar);  //El cuarto parámetro es para que se quede ese seleccionado
             //return view con equals
             return View(contexto.VehiculoModelo.Include(x => x.Serie.Marca).Where(x => x.Matricula.Equals(elementoABuscar)));
         }
