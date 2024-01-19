@@ -54,18 +54,23 @@ namespace MVC2024.Controllers
         }
 
         // GET: VehiculoController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            ViewBag.serieID = new SelectList(contexto.SerieModelo, "ID", "NomSerie");
-            VehiculoModelo vehiculo = contexto.VehiculoModelo.Find(id);
-            return View(vehiculo);
-        }
+		public ActionResult Edit(int id)
+		{
+			ViewBag.SerieId = new SelectList(contexto.SerieModelo, "ID", "nomSerie");
+			return View(contexto.VehiculoModelo.Find(id));
+		}
 
         // POST: VehiculoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, VehiculoModelo cocheModificado)
         {
+            VehiculoModelo cocheAnterior = contexto.VehiculoModelo.Find(id);
+            cocheAnterior.Matricula = cocheModificado.Matricula;
+            cocheAnterior.SerieID = cocheModificado.SerieID;
+            cocheAnterior.Color = cocheModificado.Color;
+            contexto.SaveChanges();
+
             try
             {
                 return RedirectToAction(nameof(Index));
