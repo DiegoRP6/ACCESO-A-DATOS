@@ -24,7 +24,16 @@ namespace MVC2024.Controllers
         // GET: VehiculoController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var vehiculoModelo = contexto.VehiculoModelo
+                                        .Include(x => x.Serie.Marca)
+                                        .FirstOrDefault(x => x.Id == id);
+
+            if (vehiculoModelo == null)
+            {
+                return NotFound();
+            }
+
+            return View(vehiculoModelo);
         }
 
         // GET: VehiculoController/Create
