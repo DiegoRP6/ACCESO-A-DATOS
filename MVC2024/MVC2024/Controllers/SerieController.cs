@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,8 +21,19 @@ namespace MVC2024.Controllers
 			return View(Contexto.SerieModelo.Include(x => x.Marca).ToList());
 		}
 
-		// GET: SerieController/Details/5
-		public ActionResult Details(int id)
+
+		public ActionResult Listado(int id)
+        {
+            var seriesDeMarca = Contexto.SerieModelo
+										.Include(x => x.Marca)
+                                        .Where(s => s.MarcaID == id)
+                                        .ToList();
+
+            return View(seriesDeMarca);
+        }
+
+        // GET: SerieController/Details/5
+        public ActionResult Details(int id)
 		{
 			return View();
 		}

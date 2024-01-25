@@ -24,15 +24,10 @@ namespace MVC2024.Controllers
         // GET: VehiculoController/Details/5
         public ActionResult Details(int id)
         {
+
             var vehiculoModelo = contexto.VehiculoModelo
-                                        .Include(x => x.Serie.Marca)
-                                        .FirstOrDefault(x => x.Id == id);
-
-            if (vehiculoModelo == null)
-            {
-                return NotFound();
-            }
-
+                                           .Include("Serie.Marca") // Reemplaza "PropiedadRelacionada" con el nombre real de la propiedad de navegación
+                                           .FirstOrDefault(v => v.Id == id);
             return View(vehiculoModelo);
         }
 
@@ -93,7 +88,11 @@ namespace MVC2024.Controllers
         // GET: VehiculoController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+
+            var vehiculoModelo = contexto.VehiculoModelo
+                               .Include("Serie.Marca") // Reemplaza "PropiedadRelacionada" con el nombre real de la propiedad de navegación
+                               .FirstOrDefault(v => v.Id == id);
+            return View(vehiculoModelo);
         }
 
         // POST: VehiculoController/Delete/5
@@ -101,6 +100,9 @@ namespace MVC2024.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
+
+            contexto.VehiculoModelo.Remove(contexto.VehiculoModelo.Find(id));
+            contexto.SaveChanges();
             try
             {
                 return RedirectToAction(nameof(Index));

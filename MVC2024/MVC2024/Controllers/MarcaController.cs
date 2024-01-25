@@ -25,6 +25,14 @@ namespace MVC2024.Controllers
                 Contexto.Marcas.ToList());
         }
 
+        public ActionResult Listado()
+        {
+            return View(
+                //se le pasa una lista
+
+                Contexto.Marcas.ToList());
+        }
+
         //desplegable
         public ActionResult Desplegable()
         {
@@ -90,10 +98,7 @@ namespace MVC2024.Controllers
         }
 
         // GET: Marca/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+
 
         // POST: Marca/Delete/5
         [HttpPost]
