@@ -532,3 +532,4 @@ C:\Users\diegi\Desktop\GS_DAM2\ProyectosNET\MVC2024\MVC2024\obj\Debug\net6.0\ref
 C:\Users\diegi\Desktop\GS_DAM2\ProyectosNET\MVC2024\MVC2024\obj\Debug\net6.0\MVC2024.pdb
 C:\Users\diegi\Desktop\GS_DAM2\ProyectosNET\MVC2024\MVC2024\obj\Debug\net6.0\MVC2024.genruntimeconfig.cache
 C:\Users\diegi\Desktop\GS_DAM2\ProyectosNET\MVC2024\MVC2024\obj\Debug\net6.0\ref\MVC2024.dll
+C:\Users\diegi\Desktop\GS_DAM2\ProyectosNET\MVC2024\MVC2024\obj\Debug\net6.0\MVC2024.sourcelink.json

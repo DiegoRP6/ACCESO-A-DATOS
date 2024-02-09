@@ -8,6 +8,18 @@ namespace MVC2024.Controllers
 {
     public class VehiculoController : Controller
     { 
+
+        public class VehiculoTotal
+        {
+            public string nomMarca { get; set; }
+            public string nomSerie { get; set; }
+            public string Matricula { get; set; }
+            public string Color { get; set; }
+
+
+        }
+
+
         public Contexto contexto { get; }
 
         public VehiculoController(Contexto contexto)
@@ -20,6 +32,22 @@ namespace MVC2024.Controllers
 
             return View(contexto.VehiculoModelo.Include(x => x.Serie.Marca).ToList());
         }
+
+        public ActionResult Listado2()
+        {
+            List<VehiculoTotal> lista = contexto.VistaTotal.ToList();
+            return View(lista); //devuelve la vista
+        }
+
+        public ActionResult Seleccion(int marcaId = 1, int serieId = 0)
+        {
+            ViewBag.lasMarcas = new SelectList(contexto.Marcas, "ID", "nomMarca", marcaId);
+            ViewBag.lasSeries = new SelectList(contexto.SerieModelo.Where(x => x.MarcaID == marcaId), "ID", "nomSerie", serieId);
+
+            //devuelve los vehiculos que contienen la serie seleccionada
+            return View(contexto.VehiculoModelo.Include(x => x.Serie.Marca).Where(x => x.SerieID == serieId).ToList());
+        }
+
 
         // GET: VehiculoController/Details/5
         public ActionResult Details(int id)

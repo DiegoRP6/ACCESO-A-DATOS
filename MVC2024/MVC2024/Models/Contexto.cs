@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using MVC2024.Models;
+using static MVC2024.Controllers.VehiculoController;
 
 namespace MVC2024.Models
 {
@@ -10,6 +11,17 @@ namespace MVC2024.Models
         {
             
         }
+
+        //onModelCreating
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<VehiculoTotal>(
+                eb =>
+                {
+                    eb.HasNoKey();
+                });
+        }
+        public DbSet<VehiculoTotal> VistaTotal { get; set; }
 
         public DbSet<MarcaModelo> Marcas { get; set; }
 
