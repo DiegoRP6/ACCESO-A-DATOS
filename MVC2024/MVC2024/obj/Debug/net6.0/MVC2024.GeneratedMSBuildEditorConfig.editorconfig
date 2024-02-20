@@ -98,6 +98,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWN1bG9cbGlzdGFkbzIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/diegi/Desktop/GS_DAM2/ProyectosNET/MVC2024/MVC2024/Views/Vehiculo/ListWithProcedure.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWN1bG9cTGlzdFdpdGhQcm9jZWR1cmUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/diegi/Desktop/GS_DAM2/ProyectosNET/MVC2024/MVC2024/Views/Vehiculo/ListWithProcedureAndParameter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWN1bG9cTGlzdFdpdGhQcm9jZWR1cmVBbmRQYXJhbWV0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/diegi/Desktop/GS_DAM2/ProyectosNET/MVC2024/MVC2024/Views/Vehiculo/Seleccion.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWN1bG9cU2VsZWNjaW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

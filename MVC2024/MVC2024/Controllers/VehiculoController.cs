@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using MVC2024.Models;
 
@@ -29,14 +30,51 @@ namespace MVC2024.Controllers
         // GET: VehiculoController
         public ActionResult Index()
         {
+            // Incluye los datos de la Serie y la Marca relacionadas con cada VehiculoModelo
+            var vehiculos = contexto.VehiculoModelo
+                                   .Include(x => x.Serie)
+                                   .Include(x => x.Serie.Marca)
+                                   .ToList();
 
-            return View(contexto.VehiculoModelo.Include(x => x.Serie.Marca).ToList());
+            // Carga los datos de los extras de vehículos para cada VehiculoModelo
+            foreach (var vehiculo in vehiculos)
+            {
+                contexto.Entry(vehiculo)
+                        .Collection(v => v.VehiculoExtras)
+                        .Query()
+                        .Include(ve => ve.Extra) // Incluye los datos relacionados de Extra
+                        .Load();
+            }
+
+            return View(vehiculos);
         }
 
         public ActionResult Listado2()
+        {   //esto es para llamar a una vista creada en SQL Management
+            var lista = contexto.VistaTotal.FromSql($"SELECT dbo.Marcas.nomMarca, dbo.SerieModelo.nomSerie, dbo.VehiculoModelo.Matricula, dbo.VehiculoModelo.Color\r\nFROM   dbo.Marcas INNER JOIN\r\n             dbo.SerieModelo ON dbo.Marcas.ID = dbo.SerieModelo.MarcaID INNER JOIN\r\n             dbo.VehiculoModelo ON dbo.SerieModelo.ID = dbo.VehiculoModelo.SerieID");
+            /*hacemos una consulta a la base de datos para obtener los datos de los vehiculos de la vista creada en SQL Management
+			return View(Contexto.vistaTotal.ToList());*/
+            return View(lista);
+        }
+
+        public ActionResult ListWithProcedureAndParameter(string color = "%")
         {
-            List<VehiculoTotal> lista = contexto.VistaTotal.ToList();
-            return View(lista); //devuelve la vista
+
+            var elColor = new SqlParameter("@ColorSel", color);
+
+            //este viewbag es para mostrar el color del vehiculo en el formulario
+            /* Esta es la forma de hacerlo de Agustin
+			 * ViewBag.color = new SelectList(Contexto.Vehiculo.Select(x => x.Color).Distinct(), "Color", "Color");*/
+            ViewBag.color = new SelectList(contexto.VehiculoModelo.Select(x => x.Color).Distinct().ToList());
+
+            //el parametro es el color del vehiculo, el % es para que muestre todos los colores
+            return View(contexto.VistaTotal.FromSql($"EXECUTE getVehiculosPorColor {elColor}"));
+        }        //-------------------------------------------------------------
+
+        public ActionResult ListWithProcedure()
+        {
+            //esto es para llamar a un procedimiento almacenado
+            return View(contexto.VistaTotal.FromSql($"EXECUTE getseriesVehiculos"));
         }
 
         public ActionResult Seleccion(int marcaId = 1, int serieId = 0)
@@ -62,6 +100,8 @@ namespace MVC2024.Controllers
         // GET: VehiculoController/Create
         public ActionResult Create()
         {
+            ViewBag.VehiculoExtra = new MultiSelectList(contexto.Extras, "Id", "NomExtra");
+
             ViewBag.serieID = new SelectList(contexto.SerieModelo, "ID", "nomSerie");
             return View();
         }
@@ -73,6 +113,17 @@ namespace MVC2024.Controllers
         {
             contexto.VehiculoModelo.Add(vehiculo);
             contexto.Database.EnsureCreated();
+            contexto.SaveChanges();
+
+            foreach (int xtraId in vehiculo.ExtrasSeleccionados)
+            {
+                var obj = new VehiculoExtraModelo()
+                {
+                    ExtraId = xtraId,
+                    VehiculoId = vehiculo.Id
+                };
+                contexto.VehiculoExtraModelos.Add(obj);
+            }
             contexto.SaveChanges();
 
             try

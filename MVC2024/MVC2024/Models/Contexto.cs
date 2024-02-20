@@ -28,5 +28,10 @@ namespace MVC2024.Models
         public DbSet<MVC2024.Models.SerieModelo>? SerieModelo { get; set; }
 
         public DbSet<MVC2024.Models.VehiculoModelo>? VehiculoModelo { get; set; }
+
+        public DbSet<ExtraModelo> Extras { get; set; }
+        public DbSet<VehiculoExtraModelo> VehiculoExtraModelos { get; set; }
+
+
     }
 }
