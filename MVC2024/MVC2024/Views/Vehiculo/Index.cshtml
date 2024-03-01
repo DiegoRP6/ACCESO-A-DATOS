@@ -46,16 +46,9 @@
                     @Html.DisplayFor(modelItem => item.Serie.Marca.nomMarca)
                 </td>
                 <td>
-                    @if (item.VehiculoExtras != null && item.VehiculoExtras.Any())
+                    @foreach (var extra in item.VehiculoExtras)
                     {
-                        foreach (var extra in item.VehiculoExtras)
-                        {
-                            <p>@extra.Extra.NomExtra</p> <!-- Suponiendo que "Nombre" es la propiedad que quieres mostrar de cada extra -->
-                        }
-                    }
-                    else
-                    {
-                        <p>No hay extras</p>
+                        <p>@extra.Extra.NomExtra</p>
                     }
                 </td>
             <td>

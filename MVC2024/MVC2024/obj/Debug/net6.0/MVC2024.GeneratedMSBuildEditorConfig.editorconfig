@@ -18,6 +18,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\diegi\Desktop\GS_DAM2\ProyectosNET\MVC2024\MVC2024
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/diegi/Desktop/GS_DAM2/ProyectosNET/MVC2024/MVC2024/Views/Carroceria/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fycm9jZXJpYVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/diegi/Desktop/GS_DAM2/ProyectosNET/MVC2024/MVC2024/Views/Carroceria/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fycm9jZXJpYVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/diegi/Desktop/GS_DAM2/ProyectosNET/MVC2024/MVC2024/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

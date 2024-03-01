@@ -31,6 +31,7 @@ namespace MVC2024.Models
 
         public DbSet<ExtraModelo> Extras { get; set; }
         public DbSet<VehiculoExtraModelo> VehiculoExtraModelos { get; set; }
+        public DbSet<CarroceriaModelo> CarroceriaModelo { get; set; }
 
 
     }

@@ -10,11 +10,14 @@ namespace MVC2024.Models
         public SerieModelo Serie { get; set;}
         public int SerieID { get; set;}
 
+        public CarroceriaModelo Carroceria { get; set; }
+
         [NotMapped]
 
         public List<int> ExtrasSeleccionados { get; set; }
 
         public List<VehiculoExtraModelo> VehiculoExtras { get; set; }
+
 
 
 

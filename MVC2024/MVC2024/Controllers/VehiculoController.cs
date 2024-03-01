@@ -34,17 +34,14 @@ namespace MVC2024.Controllers
             var vehiculos = contexto.VehiculoModelo
                                    .Include(x => x.Serie)
                                    .Include(x => x.Serie.Marca)
+                                   .Include(x => x.Carroceria)
                                    .ToList();
 
             // Carga los datos de los extras de vehículos para cada VehiculoModelo
-            foreach (var vehiculo in vehiculos)
-            {
-                contexto.Entry(vehiculo)
-                        .Collection(v => v.VehiculoExtras)
-                        .Query()
-                        .Include(ve => ve.Extra) // Incluye los datos relacionados de Extra
-                        .Load();
-            }
+            var vehiculosConExtras = contexto.VehiculoModelo
+                                            .Include(v => v.VehiculoExtras)
+                                                .ThenInclude(ve => ve.Extra)
+                                            .ToList();
 
             return View(vehiculos);
         }
@@ -137,11 +134,18 @@ namespace MVC2024.Controllers
         }
 
         // GET: VehiculoController/Edit/5
-		public ActionResult Edit(int id)
-		{
-			ViewBag.SerieId = new SelectList(contexto.SerieModelo, "ID", "nomSerie");
-			return View(contexto.VehiculoModelo.Find(id));
-		}
+        public ActionResult Edit(int id)
+        {
+            ViewBag.SerieId = new SelectList(contexto.SerieModelo, "ID", "nomSerie");
+            VehiculoModelo vehiculo = contexto.VehiculoModelo.Find(id);
+
+
+            vehiculo.ExtrasSeleccionados = contexto.VehiculoExtraModelos.Where(x => x.VehiculoId == id).Select(x => x.ExtraId).ToList();
+            ViewBag.VehiculoExtra = new MultiSelectList(contexto.Extras, "Id", "NomExtra");
+
+
+            return View(vehiculo);
+        }
 
         // POST: VehiculoController/Edit/5
         [HttpPost]
@@ -149,9 +153,25 @@ namespace MVC2024.Controllers
         public ActionResult Edit(int id, VehiculoModelo cocheModificado)
         {
             VehiculoModelo cocheAnterior = contexto.VehiculoModelo.Find(id);
+
             cocheAnterior.Matricula = cocheModificado.Matricula;
             cocheAnterior.SerieID = cocheModificado.SerieID;
             cocheAnterior.Color = cocheModificado.Color;
+
+            var ExtrasActuales = contexto.VehiculoExtraModelos.Where(x => x.VehiculoId == id);
+
+            // Limpiamos los extras seleccionados existentes del vehículo
+            foreach (var extraAEliminar in ExtrasActuales)
+            {
+                contexto.VehiculoExtraModelos.Remove(extraAEliminar);
+            }
+
+            // Agregamos los nuevos extras seleccionados al vehículo
+            foreach (var extraId in cocheModificado.ExtrasSeleccionados)
+            {
+                cocheAnterior.VehiculoExtras.Add(new VehiculoExtraModelo { ExtraId = extraId });
+            }
+
             contexto.SaveChanges();
 
             try

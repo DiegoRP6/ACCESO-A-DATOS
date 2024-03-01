@@ -28,6 +28,16 @@
                 <select asp-for="SerieID" class="form-control" asp-items="ViewBag.serieId"></select>
                 <span asp-validation-for="SerieID" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label asp-for="ExtrasSeleccionados" class="control-label">Extras</label>
+                <div class="form-group">
+                    <label asp-for="ExtrasSeleccionados" class="control-label"></label>
+                    <select multiple asp-for="ExtrasSeleccionados" class="form-control" asp-items="ViewBag.VehiculoExtra"></select>
+                <span asp-validation-for="ExtrasSeleccionados" class="text-danger"></span>
+                </div>
+            </div>
+            
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

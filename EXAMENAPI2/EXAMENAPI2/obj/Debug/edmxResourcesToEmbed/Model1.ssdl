@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ExamenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Alumnos">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="Apellidos" Type="nvarchar" MaxLength="50" />
+    <Property Name="Direccion" Type="nvarchar" MaxLength="50" />
+    <Property Name="FNac" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sexo" Type="nvarchar" MaxLength="50" />
+    <Property Name="CursoID" Type="int" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Examen.dbo.Ciclos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="Ciclos">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Cursos">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ano" Type="nvarchar" MaxLength="50" />
+    <Property Name="Letra" Type="nvarchar" MaxLength="50" />
+    <Property Name="CicloID" Type="int" />
+  </EntityType>
+  <Association Name="FK_Alumnos_Alumnos">
+    <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="1" />
+    <End Role="Alumnos1" Type="Self.Alumnos" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Alumnos">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Alumnos1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cursos_Cursos">
+    <End Role="Cursos" Type="Self.Cursos" Multiplicity="1" />
+    <End Role="Cursos1" Type="Self.Cursos" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Cursos">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Cursos1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ExamenModelStoreContainer">
+    <EntitySet Name="Alumnos" EntityType="Self.Alumnos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cursos" EntityType="Self.Cursos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ciclos" EntityType="Self.Ciclos" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Ciclos].[ID] AS [ID], 
+    [Ciclos].[Nombre] AS [Nombre]
+    FROM [dbo].[Ciclos] AS [Ciclos]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Alumnos_Alumnos" Association="Self.FK_Alumnos_Alumnos">
+      <End Role="Alumnos" EntitySet="Alumnos" />
+      <End Role="Alumnos1" EntitySet="Alumnos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cursos_Cursos" Association="Self.FK_Cursos_Cursos">
+      <End Role="Cursos" EntitySet="Cursos" />
+      <End Role="Cursos1" EntitySet="Cursos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
